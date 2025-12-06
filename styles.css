@@ -1,7 +1,8 @@
-/* CSS BY YOUR NAME */
+/* CSS BY YOUR NAME Thomas Miraval*/
 
 /* IMPORTED FONTS*/
 /* IMPORT "INTER" FROM GOOGLE FONTS"
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
 /* CSS RESET */
 /* http://meyerweb.com/eric/tools/css/reset/
@@ -71,10 +72,71 @@ table {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* center children horizontally */
+}
+
+/* Base typography and colors */
+body {
+    font-family: var(--font);
+    color: var(--charcoal);
+    background: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center; /* center inline content by default */
+}
+
+/* HERO: Innovation & Investment section styles (photo background) */
+.hero .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+.hero h2 {
+    color: #ffffff;
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    line-height: 1.05;
+    font-weight: 700;
+    margin: 0;
+}
+.hero p {
+    color: rgba(255,255,255,0.9);
+    max-width: 800px;
+    text-align: center;
+    font-size: 1.125rem;
+}
+.hero button {
+    background: var(--blue);
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+}
+.hero button:hover,
+.hero button:focus {
+    opacity: 0.95;
+    transform: translateY(-1px);
+}
+
+/* Make hero shorter on very small screens so CTA stays visible */
+@media (max-width: 420px) {
+    .hero {
+        height: 60vh;
+        padding: 1.5rem 0.5rem;
+    }
+    .hero p {
+        font-size: 1rem;
+    }
 }
 
 /* ADD TO "INNOVATION & INVESTMENT SECTION (Photo by Kevin Matos on Unsplash) */
- {
+.hero {
     background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('images/vanguard-hero.jpg') no-repeat center center/cover;
     height: 80vh;
     display: grid;
@@ -82,24 +144,68 @@ table {
     text-align: center;
     padding: 1rem;
     overflow: hidden;
+    position: relative;
 }
 
 /* ADD FLOATING SVG LOGO BEFORE THE H1 */
- {
+.hero h1 {
+    position: relative;
+    display: inline-block;
+    padding-left: 1.25rem;
+}
+.hero h1::before {
     content: "";
-
-    left:-.5rem;
+    position: absolute;
+    left: -0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
     width: 3.75rem;
     height: 3.75rem;
     background: url('images/vanguard-logo.svg') no-repeat center/contain;
-
+    background-size: contain;
 }
-/* THIS ONE IS DONE FOR YOU */
+/* Floating SVG logo for the site header H1 (decorative) */
+header .container h1 {
+    position: relative;
+    display: inline-block;
+    padding-left: 3.25rem;
+}
+header .container h1::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2.75rem;
+    height: 2.75rem;
+    background: url('images/vanguard-logo.svg') no-repeat center/contain;
+    background-size: contain;
+    pointer-events: none; /* decorative */
+}
+/* center navigation and remove default list styles */
+header nav {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+header nav li {
+    list-style: none;
+}
+
+/* center tables and bar-chart */
+table {
+    margin: 1rem auto;
+    width: auto;
+}
+
+/* Bar chart (single consolidated rule) */
 #bar-chart {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     align-items: flex-end;
-    justify-content: space-around;
+    justify-content: center;
     gap: 1rem;
     height: 300px;
     width: 100%;
@@ -113,8 +219,11 @@ table {
     background: var(--charcoal);
     border-radius: 10px;
     position: relative;
-    transition: ;
+    -webkit-transition: height 0.6s ease-in-out;
+    transition: height 0.6s ease-in-out;
+    will-change: height;
     height: 0;
+    animation: stepUp 1s ease-in-out forwards;
 }
 /* THIS ONE IS DONE FOR YOU */
 .bar::after {
@@ -136,26 +245,184 @@ table {
     }
 }
 /* ADD ANIMATION ON stepUp for 1s ease-in-out forwards */
-.bar {
-    animation: stepUp 1s ease-in-out forwards;
-}
+/* (animation moved into the consolidated .bar rule above) */
 
 
-/* MEDIA QUERIES (MEDIUM) */ 
-
-    #results {
-        grid-template-columns: 1fr 1fr;
-    }
+/* MEDIA QUERIES (MEDIUM) */
+@media (min-width: 768px) {
+    /* Make the results area a two-column grid where each column is equal width */
     .results-container {
-        flex-direction: row;
-        justify-content: space-between;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+    .results-table,
+    .results-chart {
+        width: 100%; /* ensure children fill their grid cell */
     }
     .results-table {
-        width: 50%;
+        padding-right: 1rem;
     }
-    .bar-chart {
-        width: 50%;
+    .results-chart {
+        padding-left: 1rem;
     }
+    .offer-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 
+/* Results area styling: blue background with white text, responsive two-column layout */
+#results {
+    background: var(--blue);
+    color: #ffffff;
+    padding: 1.5rem 0.75rem;
+    border-radius: 8px;
+}
+.results-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    width: 100%;
+}
+.results-table {
+    text-align: left; /* table content left-aligned inside the blue box */
+}
+.results-table h2 {
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+.results-chart h2 {
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+.results-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--black);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+.results-table th,
+.results-table td {
+    padding: 0.75rem 0.85rem;
+    color: #fff;
+}
+.results-table tbody tr + tr td {
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+.results-table thead th {
+    background: rgba(255,255,255,0.04);
+    font-weight: 700;
+}
+.results-table tbody tr:nth-child(even) td {
+    background: var(--charcoal);
+}
+.results-table tbody tr:nth-child(odd) td {
+    background: transparent;
+}
+.results-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Offer cards: boxed presentation for each service/offering */
+.offer-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    width: 100%;
+    margin-top: 1rem;
+}
+.card {
+    background: var(--blue);
+    color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    text-align: left;
+    border: 1px solid rgba(255,255,255,0.06);
+}
+.card h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.125rem;
+    color: #ffffff;
+}
+.card p {
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.4;
+    color: rgba(255,255,255,0.92);
+}
+
+@media (min-width: 768px) {
+    .offer-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .offer-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    .results-container {
+        grid-template-columns: 1fr 1fr;
+    }
+    .results-table {
+        padding-right: 1rem;
+    }
+    .results-chart {
+        padding-left: 1rem;
+    }
+}
+
+/* Footer styles: dark background with readable text */
+footer {
+    background: var(--black);
+    color: var(--white);
+}
+footer .container {
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+footer a,
+footer address,
+footer p,
+footer label {
+    color: var(--white);
+}
 
 /* MEDIA QUERIES (LARGE) */
+@media (min-width: 1200px) {
+    /* Slightly wider container for large screens */
+    .container {
+        max-width: 1400px;
+    }
+
+    /* More space between results on very large screens; keep equal column widths */
+    #results {
+        gap: 2rem;
+    }
+    .results-table,
+    .results-chart {
+        width: 100%;
+    }
+
+    /* Make the bar-chart larger on big screens */
+    #bar-chart {
+        height: 400px;
+        max-width: 1000px;
+    }
+    .bar {
+        width: 70px;
+    }
+}
