@@ -244,20 +244,18 @@ table {
         height: var(--height);
     }
 }
-/* ADD ANIMATION ON stepUp for 1s ease-in-out forwards */
-/* (animation moved into the consolidated .bar rule above) */
 
 
 /* MEDIA QUERIES (MEDIUM) */
 @media (min-width: 768px) {
-    /* Make the results area a two-column grid where each column is equal width */
+    
     .results-container {
         grid-template-columns: 1fr 1fr;
         gap: 2rem;
     }
     .results-table,
     .results-chart {
-        width: 100%; /* ensure children fill their grid cell */
+        width: 100%; 
     }
     .results-table {
         padding-right: 1rem;
@@ -270,7 +268,6 @@ table {
     }
 }
 
-/* Results area styling: blue background with white text, responsive two-column layout */
 #results {
     background: var(--blue);
     color: #ffffff;
@@ -285,7 +282,7 @@ table {
     width: 100%;
 }
 .results-table {
-    text-align: left; /* table content left-aligned inside the blue box */
+    text-align: left; 
 }
 .results-table h2 {
     color: #ffffff;
@@ -328,7 +325,6 @@ table {
     align-items: center;
 }
 
-/* Offer cards: boxed presentation for each service/offering */
 .offer-cards {
     display: grid;
     grid-template-columns: 1fr;
@@ -382,7 +378,7 @@ table {
     }
 }
 
-/* Footer styles: dark background with readable text */
+
 footer {
     background: var(--black);
     color: var(--white);
@@ -403,12 +399,11 @@ footer label {
 
 /* MEDIA QUERIES (LARGE) */
 @media (min-width: 1200px) {
-    /* Slightly wider container for large screens */
+
     .container {
         max-width: 1400px;
     }
 
-    /* More space between results on very large screens; keep equal column widths */
     #results {
         gap: 2rem;
     }
@@ -417,7 +412,6 @@ footer label {
         width: 100%;
     }
 
-    /* Make the bar-chart larger on big screens */
     #bar-chart {
         height: 400px;
         max-width: 1000px;
@@ -426,3 +420,4 @@ footer label {
         width: 70px;
     }
 }
+/* 
